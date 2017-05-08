@@ -38,33 +38,44 @@ public function __construct()
      public function supprimer(Admin $user)
     {
         $user = $user->delete();
-        return redirect('/administration/admins')->withFlashMessage('تم الحذف بنجاح');
+        return redirect::back()->with('message', 'تم حذف الحساب بنجاح');
      }
 
     
  protected function store(AjouterAdminRequest $request ,Admin $user)
     {
-        $user->create([
+       $admin = $user->create([
             'nom' => $request['nom'],
             'prenom' => $request['prenom'],
             'nom_fr' => $request['nom_fr'],
             'prenom_fr' => $request['prenom_fr'],
-            'photo' => $request['photo'],
             'email' => $request['email'],
             'telephone' => $request['telephone'],
+            'adresse' => $request['adresse'],
             'password' => bcrypt($request['password']),
             'sexe' => $request['sexe'],
-            'date_n' => $request['date_n'],
+            'date_n' => date('Y-m-d', strtotime(str_replace('-', '/', $request['date_n']))),
             'lieu_n' => $request['lieu_n'],
         ]);
-        return redirect('/administration/admins')->withFlashMessage('تمت الاضافة بنجاح');
+        return redirect::to('/administration/admins/'.$admin->id.'/modifier')->with('message', 'تم الاضافة بنجاح');
     }
 
  public function update(Request $request ,Admin $user)
     {
         $userupdate = $user->find($request->id);
-        $userupdate->fill([$request->all()])->save();
-        return Redirect::back()->withFlashMessage('تمت الاضافة بنجاح');
+        $userupdate->fill([
+                    'nom' => $request['nom'],
+                    'prenom' => $request['prenom'],
+                    'nom_fr' => $request['nom_fr'],
+                    'prenom_fr' => $request['prenom_fr'],
+                    'email' => $request['email'],
+                    'adresse' => $request['adresse'],
+                    'sexe' => $request['sexe'],
+                    'telephone' => $request['telephone'],
+                    'date_n' => date('Y-m-d', strtotime(str_replace('-', '/', $request['date_n']))),
+                    'lieu_n' => $request['lieu_n'],
+        ])->save();
+        return Redirect::back()->with('message', 'تم التعديل بنجاح');
      }
 
 
@@ -73,8 +84,17 @@ public function __construct()
         $userupdate = $user->find($request->id);
         $password = bcrypt($request['password']);
         $userupdate->fill( ['password' => $password ])->save();
-        return redirect('/administration/admins')->withFlashMessage('تمت الاضافة بنجاح');
+        return Redirect::back()->with('message', 'تم التعديل بنجاح');
      }
+
+    public function modifierphoto(Request $request, Admin $user){
+         $userupdate = $user->find($request->id);
+    		$avatar = $request->file('photo');
+    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
+    		Image::make($avatar)->resize(300, 300)->save( public_path('/images/' . $filename ) );
+         $userupdate->fill( ['photo' => $filename] )->save();
+        return Redirect::back()->with('message', 'تم التعديل بنجاح');
+    }
 
 public function anyData(Admin $user)
     {
@@ -91,31 +111,4 @@ public function anyData(Admin $user)
 
     }
 
-     /*protected function update(AjouterAdminRequest $request ,Admin $user)
-    {
-        $user->create([
-            'nom' => $request['nom'],
-            'prenom' => $request['prenom'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'telephone' => $request['telephone'],
-            'date_n' => $request['date_n'],
-            'lieu_n' => $request['lieu_n'],
-            'sexe' => $request['sexe'],
-        ]);
-        return redirect('/administration/admins')->withFlashMessage('تمت الاضافة بنجاح');
-    }
-   /*protected function image_store(Request $request)
-    {
-        if($request->hasFile('photo')){
-            $photo = $request->file('photo');
-            $filename = time() . '.' . $photo->getClientOriginalExtention();
-            Image::make($photo)->resize(300,300)->save(public_path('images/admins/'));
-
-            $user = Auth::user();
-            $user->photo = $filename;
-            $user->save();
-        }
-        return view('administration.admins.ajouter');
-    }*/
 }

@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')  | اسم الموقع</title>
@@ -44,6 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+          @include('administration/layouts/message')
           @yield('content')
 
 

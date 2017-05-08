@@ -11,6 +11,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "maatwebsite/excel": "^2.1",
+        "yajra/laravel-datatables-buttons": "1.1",
         "yajra/laravel-datatables-oracle": "^7.3"
     },
     "require-dev": {

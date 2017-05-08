@@ -5,6 +5,7 @@
 @endsection
 
 @section('header')
+    <link href="{{ asset("/bower_components/admin-lte/plugins/datepicker/datepicker3.css") }}" rel="stylesheet" type="text/css" />
 
 
 @endsection
@@ -39,15 +40,18 @@
            <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/admins/update') }}">
               {{ csrf_field() }}
             <input type="hidden" value="{{ $user->id }}" name="id">
-              <div class="box-body">
+              
+              
+    <div class="box-body">
+        <div class="col-xs-12">
                 <div class="row">
-                
+    
                 <div class="col-xs-6">
 
                         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                             <div class="col-md-12">
                                 <label for="nom" class="control-label">اللقب</label>
-                                <input id="nom" type="text" class="form-control" name="nom" value="{{ $user->nom }}" required autofocus>
+                                <input id="nom" type="text" class="form-control" name="nom" value="{{ $user->nom }}"  autofocus>
                                 @if ($errors->has('nom'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('nom') }}</strong>
@@ -56,25 +60,26 @@
                             </div>
                         </div> 
 
-                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('prenom_fr') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label for="telephone" class="control-label">رقم الهاتف</label>
-                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $user->telephone }}" required autofocus>
-                                @if ($errors->has('telephone'))
+                                <label for="prenom_fr" class="control-label">الاسم باللاتينية</label>
+                                <input id="prenom_fr" type="text" class="form-control" name="prenom_fr" value="{{ $user->prenom_fr }}"  autofocus>
+                                @if ($errors->has('prenom_fr'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                        <strong>{{ $errors->first('prenom_fr') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div> 
 
-                        <div class="form-group{{ $errors->has('lieu_n') ? ' has-error' : '' }}">
+
+                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label for="lieu_n" class="control-label">مكان الميلاد</label>
-                                <input id="lieu_n" type="text" class="form-control" name="lieu_n" value="{{ $user->lieu_n }}" required autofocus>
-                                @if ($errors->has('lieu_n'))
+                                <label for="telephone" class="control-label">رقم الهاتف</label>
+                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $user->telephone }}"  autofocus>
+                                @if ($errors->has('telephone'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('lieu_n') }}</strong>
+                                        <strong>{{ $errors->first('telephone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -86,7 +91,7 @@
                         <div class="form-group{{ $errors->has('prenom') ? ' has-error' : '' }}">
                             <div class="col-md-12">
                                 <label for="prenom" class="control-label">الاسم</label>
-                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ $user->prenom }}" required autofocus>
+                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ $user->prenom }}"  autofocus>
                                 @if ($errors->has('prenom'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('prenom') }}</strong>
@@ -95,10 +100,23 @@
                             </div>
                         </div>   
 
+                        
+                    <div class="form-group{{ $errors->has('nom_fr') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <label for="nom_fr" class="control-label">اللقب باللاتينية</label>
+                                <input id="nom_fr" type="text" class="form-control" name="nom_fr" value="{{ $user->nom_fr }}"  autofocus>
+                                @if ($errors->has('nom_fr'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nom_fr') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div> 
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-12">
                                 <label for="email" class="control-label">البريد الالكتروني</label>
-                                <input id="email" type="text" class="form-control" name="email" value="{{ $user->email }}" required autofocus>
+                                <input id="email" type="text" class="form-control" name="email" value="{{ $user->email }}"  autofocus>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -107,19 +125,60 @@
                             </div>
                         </div>  
 
-                        <div class="form-group{{ $errors->has('date_n') ? ' has-error' : '' }}">
+            </div>
+
+            <div class="col-xs-12">
+
+                        <div class="form-group{{ $errors->has('adresse') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <label for="date_n" class="control-label">تاريخ الميلاد</label>
-                                <input id="date_n" type="text" class="form-control" name="date_n" value="{{ $user->date_n }}" required autofocus>
-                                @if ($errors->has('date_n'))
+                                <label for="adresse" class="control-label">العنوان</label>
+                                <input id="adresse" type="text" class="form-control" name="adresse" value="{{ $user->adresse }}"  autofocus>
+                                @if ($errors->has('adresse'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('date_n') }}</strong>
+                                        <strong>{{ $errors->first('adresse') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div> 
+                         </div>   
+                </div>  
 
+                 <div class="col-xs-4">
+
+
+                       <div class="form-group{{ $errors->has('sexe') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                            <label for="sexe" class="control-label">الجنس</label>
+                              <select class="form-control" name="sexe">
+                                    <option value="h">ذكر</option>
+                                    <option value="f">أنثى</option>
+                            </select>
+                            </div>
+                         </div>
+
+                </div>  
+                <div class="col-xs-4">
+
+                       <div class="form-group{{ $errors->has('lieu_n') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                            <label for="lieu_n" class="control-label">مكان الميلاد</label>
+                             <input id="lieu_n" type="lieu_n" class="form-control" name="lieu_n" value="{{ $user->lieu_n }}" >
+                            </div>
+                         </div>
                 </div>
+                
+                  
+                <div class="col-xs-4">
+
+                <div class="form-group{{ $errors->has('date_n') ? ' has-error' : '' }}">
+                    <div class="col-md-12">
+                    <label for="datepicker" class="control-label">تاريخ الميلاد</label>
+                  <input type="text" id="datepicker" class="form-control" name="date_n" value="{{ $user->date_n }}" >
+                </div>
+                </div>  
+          </div>  
+
+    
+    </div>
 
               </div>                
               </div>
@@ -199,12 +258,14 @@
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="/images/{{ Auth::user()->photo }}" alt="User profile picture">
               <h3 class="profile-username text-center">{{ $user->nom }} {{ $user->prenom }}</h3>
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/admins') }}">
-                 {{ csrf_field() }}
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/admins/changetof') }}" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              <input type="hidden" value="{{ $user->id }}" name="id">
                 <div class="col-md-12">
                   <input  type="file" class="form-control" name="photo">
                 </div>
             </div>
+
             <!-- /.box-body -->
 
                 <div class="box-footer">
@@ -265,6 +326,15 @@
 @endsection
 
 @section('footer')
+<script src="{{ asset ("/bower_components/admin-lte/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript"></script>
+<script>
+  $(function () {
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
 
+  });
+</script>
 
 @endsection

@@ -5,15 +5,7 @@
 @endsection
 
 @section('header')
-<!--{!! Html::style('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.css')!!}-->
-
-        <!-- jQuery -->
-        <script src="//code.jquery.com/jquery.js"></script>
-        <!-- DataTables -->
-        <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <!-- App scripts -->
+{!! Html::style('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.css')!!}
 
 
 @endsection
@@ -32,12 +24,22 @@
 
    <!-- Main content -->
    <section class="content">
+   
      <div class="row">
-       <div class="col-xs-12">
-         <div class="box">
+       <div class="col-xs-12 ">
+         <div class="box box-primary">
+         <div class="box-header with-border">
+              <h3 class="box-title">قائمة الاداريين</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
            <!-- /.box-header -->
            <div class="box-body">
-             <table id="data" class="table table-bordered table-hover">
+              
+             <table id="data" class="table table-bordered table-hover" cellspacing="0">
                <thead>
                <tr>
                  <th>#</th>
@@ -58,9 +60,24 @@
                   
 
                </tbody>
+
+              <tfoot>
+               <tr>
+                 <th>#</th>
+                 <th>الاسم</th>
+                 <th>اللقب</th>
+                 <th>البريد الالكتروني</th>
+                 <th>رقم الهاتف</th>
+                 <th>الجنس</th>
+                 <th>التحكم</th>
+
+
+                   </tr>
+               </tfoot>
               
              </table>
            </div>
+
            <!-- /.box-body -->
          </div>
          <!-- /.box -->
@@ -78,9 +95,9 @@
 {!! Html::script('/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js')!!}
 {!! Html::script('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js')!!}
 
+
 <script type="text/javascript">
         var lastIdx = null;
-
         $('#data thead th').each( function () {
             if($(this).index()  < 5 ){
                 var classname = $(this).index() == 6  ?  'date' : 'dateslash';
@@ -89,26 +106,25 @@
             }else if($(this).index() == 5){
                 $(this).html( '<select><option value="h"> ذكر </option><option value="f"> أنثى </option></select>' );
             }
-
         } );
-
         var table = $('#data').DataTable({
             processing: true,
-            serverSide: false,
             ajax: '{{ url('/administration/admins/data') }}',
             columns: [
                 {data: 'id', name: 'id'},
                 {data: 'nom', name: 'nom'},
                 {data: 'prenom', name: 'prenom'},
                 {data: 'email', name: 'email'},
-                {data: 'telephone', name: 'telephone'},
-                {data: 'sexe', name: 'sexe'},
+                {data: 'telephone', name: 'telephone',orderable: false},
+                {data: 'sexe', name: 'sexe',orderable: false},
                 {data: 'action', name: 'action',orderable: false, searchable: false}
             ],
             "language": {
                 "url": "{{ Request::root()  }}/datatables/Arabic.json"
             },
-            "stateSave": false,
+            "autoWidth": false,
+            "lengthChange": false,
+            "stateSave": true,
             "responsive": true,
             "order": [[0, 'desc']],
             "pagingType": "full_numbers",
@@ -118,44 +134,16 @@
             ],
             iDisplayLength: 25,
             fixedHeader: true,
-
-            "oTableTools": {
-                "aButtons": [
-
-                    {
-                        "sExtends": "csv",
-                        "sButtonText": "ملف اكسل",
-                        "sCharSet": "utf16le"
-                    },
-                    {
-                        "sExtends": "copy",
-                        "sButtonText": "نسخ المعلومات",
-                    },
-                    {
-                        "sExtends": "print",
-                        "sButtonText": "طباعة",
-                        "mColumns": "visible",
-
-
-                    },
-                ],
-
-                "sSwfPath": "{{ Request::root()  }}/datatables/copy_csv_xls_pdf.swf"
-            },
-
-            "dom": '<"pull-left text-left" T><"pullright" i><"clearfix"><"pull-right text-right col-lg-6" f > <"pull-left text-left" l><"clearfix">rt<"pull-right text-right col-lg-6" pi > <"pull-left text-left" l><"clearfix"> '
-            ,initComplete: function ()
+            initComplete: function ()
             {
-                var r = $('#data tfoot tr');
+                var r = $('#data thead tr');
                 r.find('th').each(function(){
                     $(this).css('padding', 8);
                 });
                 $('#data thead').append(r);
                 $('#search_0').css('text-align', 'center');
             }
-
         });
-
         table.columns().eq(0).each(function(colIdx) {
             $('input', table.column(colIdx).header()).on('keyup change', function() {
                 table
@@ -163,14 +151,7 @@
                         .search(this.value)
                         .draw();
             });
-
-
-
-
         });
-
-
-
         table.columns().eq(0).each(function(colIdx) {
             $('select', table.column(colIdx).header()).on('change', function() {
                 table
@@ -178,17 +159,13 @@
                         .search(this.value)
                         .draw();
             });
-
             $('select', table.column(colIdx).header()).on('click', function(e) {
                 e.stopPropagation();
             });
         });
-
-
         $('#data tbody')
                 .on( 'mouseover', 'td', function () {
                     var colIdx = table.cell(this).index().column;
-
                     if ( colIdx !== lastIdx ) {
                         $( table.cells().nodes() ).removeClass( 'highlight' );
                         $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
@@ -197,10 +174,6 @@
                 .on( 'mouseleave', function () {
                     $( table.cells().nodes() ).removeClass( 'highlight' );
                 } );
-
-
-
-
     </script>
 
 @endsection

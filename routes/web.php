@@ -40,6 +40,8 @@ Route::prefix('administration')->group(function() {
             Route::post('/update', 'AdminController@update');
             Route::get('{user}/supprimer', 'AdminController@supprimer');
             Route::post('/changemdp', 'AdminController@modifiermdp');
+            Route::post('/changetof', 'AdminController@modifierphoto');
+
     });
 });
 

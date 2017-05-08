@@ -94,15 +94,22 @@
 
 {!! Html::script('/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js')!!}
 {!! Html::script('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js')!!}
-<script type="text/javascript">
-    $('#example2').DataTable({
+<script>
+  $(function () {
+    $("#example2").DataTable();
+    $('#example1').DataTable({
       "paging": true,
-      "lengthChange": true,
+      "lengthChange": false,
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false
-      });
+      "autoWidth": false,
+      "dom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": "/datatables/copy_csv_xls.swf"}
+    });
+  });
 </script>
+
 
 @endsection
