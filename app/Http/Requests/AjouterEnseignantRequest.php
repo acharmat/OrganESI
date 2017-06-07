@@ -24,14 +24,17 @@ class AjouterEnseignantRequest extends FormRequest
     public function rules()
     {
         return [
+            'sec_s' => 'required|max:255|unique:enseignant',
             'nom' => 'required|max:255',
             'prenom' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:enseignant',
-            'password' => 'required|min:6|confirmed',
+            'email' => 'required|email|max:255|regex:/(.*)@esi-sba.dz/i|unique:enseignant',
             'telephone' => 'required|max:255',
             'date_n' => 'required',
             'lieu_n' => 'required|max:255',
             'sexe' => 'required|max:255',
+            'adresse' => 'required|max:255',
+            'nom_fr' => 'required|max:255',
+            'prenom_fr' => 'required|max:255',
         ];
     }
 }

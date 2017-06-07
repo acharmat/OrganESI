@@ -104,11 +104,11 @@
                 var title = $(this).html();
                 $(this).html( '<input type="text" class="' + classname + '" data-value="'+ $(this).index() +'" placeholder=" '+title+'" />' );
             }else if($(this).index() == 5){
-                $(this).html( '<select><option value="h"> ذكر </option><option value="f"> أنثى </option></select>' );
+                $(this).html( '<select><option value="ذكر"> ذكر </option><option value="أنثى"> أنثى </option></select>' );
             }
         } );
         var table = $('#data').DataTable({
-            processing: true,
+        "processing": true,
             ajax: '{{ url('/administration/admins/data') }}',
             columns: [
                 {data: 'id', name: 'id'},
@@ -122,17 +122,13 @@
             "language": {
                 "url": "{{ Request::root()  }}/datatables/Arabic.json"
             },
+            "searching": true,
             "autoWidth": false,
             "lengthChange": false,
             "stateSave": true,
             "responsive": true,
             "order": [[0, 'desc']],
-            "pagingType": "full_numbers",
-            aLengthMenu: [
-                [25, 50, 100, 200, -1],
-                [25, 50, 100, 200, "All"]
-            ],
-            iDisplayLength: 25,
+            iDisplayLength: 10,
             fixedHeader: true,
             initComplete: function ()
             {

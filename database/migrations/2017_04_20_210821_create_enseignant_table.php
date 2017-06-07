@@ -25,15 +25,15 @@ class CreateEnseignantTable extends Migration
             $table->text('adresse');
             $table->string('telephone');
             $table->string('password');
-            $table->enum('sexe', ['رجل', 'امرأة']);
+            $table->enum('sexe', ['ذكر', 'أنثى']);
             $table->date('date_n');	
             $table->string('lieu_n');
-            $table->enum('spec', ['اعلام الي', 'رياضيات', 'لغات', 'أخرى']);            
             $table->enum('situation_f', ['أعزب', 'متزوج', 'مطلق', 'أرمل']);
-            $table->integer('nbr_enf');
-            $table->date('date_r');	         
+            $table->integer('nbr_enf')->default('0')->nullable();
+            $table->date('date_r');
+            $table->enum('statu', ['مرسم', 'متربص']);
+            $table->date('date_s');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

@@ -24,6 +24,9 @@
         "classmap": [
             "database"
         ],
+        "files": [
+            "app/function/function.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         }

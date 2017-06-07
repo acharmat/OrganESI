@@ -1,8 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer no-print">
     <!-- To the right -->
-    <div class="pull-right hidden-xs">
-        Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright © 2015 <a href="#">Company</a>.</strong> All rights reserved.
+    Made with <i class="fa fa-heart" style="color: #761c19"></i> by <b>MW.DZ</b>
 </footer>

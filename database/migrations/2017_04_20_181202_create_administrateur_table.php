@@ -18,16 +18,16 @@ class CreateAdministrateurTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('nom_fr');
+            $table->string('adresse');
             $table->string('prenom_fr');
             $table->string('photo')->default('default.jpg');
             $table->string('email')->unique();
             $table->string('telephone');
             $table->string('password');
-            $table->enum('sexe', ['h', 'f']);
+            $table->enum('sexe', ['ذكر', 'أنثى']);
             $table->date('date_n');	
             $table->string('lieu_n');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

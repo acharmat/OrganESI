@@ -9,6 +9,7 @@ class Admin extends Authenticatable
 {
     use Notifiable;
     protected $table = 'administrateur';
+    public $timestamps = false;
 
     protected $guard ='admin';
 

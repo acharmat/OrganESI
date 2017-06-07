@@ -20,6 +20,7 @@ class AdminController extends Controller
 public function __construct()
     {
         $this->middleware('auth:admin');
+
     }
 
    public function index(){
@@ -57,6 +58,7 @@ public function __construct()
             'date_n' => date('Y-m-d', strtotime(str_replace('-', '/', $request['date_n']))),
             'lieu_n' => $request['lieu_n'],
         ]);
+
         return redirect::to('/administration/admins/'.$admin->id.'/modifier')->with('message', 'تم الاضافة بنجاح');
     }
 
@@ -99,7 +101,7 @@ public function __construct()
 public function anyData(Admin $user)
     {
 
-      $users = $user->all();
+      $users = Admin::select(['id', 'nom', 'prenom', 'email', 'telephone', 'sexe']);
 
         return Datatables::of($users)      
             ->addColumn('action', function ($user) {

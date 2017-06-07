@@ -164,8 +164,8 @@
                             <div class="col-md-12">
                             <label for="sexe" class="control-label">الجنس</label>
                               <select class="form-control" name="sexe">
-                                    <option value="h">ذكر</option>
-                                    <option value="f">أنثى</option>
+                                    <option value="ذكر">ذكر</option>
+                                    <option value="أنثى">أنثى</option>
                             </select>
                             </div>
                          </div>
@@ -198,7 +198,7 @@
     </div>
         
              <div class="box-footer">
-                                <button type="submit" class="btn btn-primary pull-left">اضافة أستاذ</button>
+                                <button type="submit" class="btn btn-primary pull-left">اضافة اداري</button>
             </div>
                 </form>
     </div>

@@ -14,14 +14,16 @@ class CreateDiplomeTable extends Migration
     public function up()
     {
         Schema::create('diplome', function (Blueprint $table) {
-			            $table->increments('id_Dip');
-						$table->string('nom_Dip');
-                        $table->Date('Date_Dip');
-						$table->foreign('id_ensg')->unsigned();
+			            $table->increments('id');
+            $table->enum('nom_Dip', ['بكالوريا', 'ليسانس', 'ماستر', 'مهندس', 'ماجستر','دكتوراه']);
+            $table->string('division');
+            $table->Date('Date_Dip');
+                         $table->string('spec');
+                         $table->integer('id_ensg')->unsigned();
                         $table->foreign('id_ensg')
-                        ->references('id')->on('enseignant');
-                        $table->timestamps();
-			
+                        ->references('id')->on('enseignant')
+                            ->onDelete('cascade');
+
 			 });
     }
 
