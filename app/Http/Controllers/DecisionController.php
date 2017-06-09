@@ -58,7 +58,7 @@ class DecisionController extends Controller
         $decision->id_admin = Auth::user()->id ;
 
         $decision->save();
-        return redirect::back()->with('message', 'تم الاضافة بنجاح');
+        return redirect::to('/administration/decisions/')->with('message', 'تم الاضافة بنجاح');
 
 
     }
@@ -85,17 +85,13 @@ class DecisionController extends Controller
 
         return Datatables::of($decision)
             ->addColumn('action', function ($decision) {
-                return '<a href="/administration/decisions/'. $decision->id . '/visioner" class="btn btn-xs btn-primary">طباعة</a>
+                return '<a href="/administration/decisions/'. $decision->id . '/visioner" class="btn btn-xs btn-primary">طباعة القرار</a>
                 <a href="/administration/decisions/'. $decision->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
                 <a href="/administration/decisions/'. $decision->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>
                 ';
 
             })
             ->make(true);
-
-
-
-
 
     }
 

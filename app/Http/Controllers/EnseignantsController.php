@@ -8,7 +8,7 @@ use App\Http\Requests\AjouterEnseignantRequest;
 use App\User;
 use App\Diplome;
 use App\Grade;
-use App\Titularisation;
+use App\Echelon;
 use Image;
 use Datatables;
 use Auth;
@@ -31,17 +31,15 @@ public function __construct()
       return view('administration.enseignants.index');
     }
 
+    public function visioner(User $user){
+        $grade=Grade::where('id_ensg',$user->id)->orderBy('id', 'desc')->first();
+        return view('administration.enseignants.visioner' ,['user'=>$user,'grade'=>$grade]);
+    }
+
+
     public function ajouter()
     {
         return view('administration.enseignants.ajouter');
-    }
-
-    public function visioner(User $user,$id){
-        $conge= Conge::where('id',$id)->first();
-        $user=User::find($conge->id_ensg);
-        $grade=Grade::where('id_ensg',$conge->id_ensg)->orderBy('id', 'desc')->first();
-
-        return view('administration.conge.visioner' ,['conge'=>$conge,'user'=>$user,'grade'=>$grade]);
     }
 
 
@@ -54,10 +52,10 @@ public function __construct()
     {
         $diplom=Diplome::where('id_ensg',$user->id)->orderBy('id', 'desc')->get();
         $grade=Grade::where('id_ensg',$user->id)->orderBy('id', 'desc')->first();
-     $titularisation=Titularisation::where('id_ensg',$user->id)->orderBy('id', 'desc')->first();
+        $echelon=Echelon::where('id_ensg',$user->id)->orderBy('id', 'desc')->first();
 
 
-        return view('administration.enseignants.modifier' , ['user'=>$user,'diplom'=>$diplom,'grade'=>$grade,'titularisation'=>$titularisation]);
+        return view('administration.enseignants.modifier' , ['user'=>$user,'diplom'=>$diplom,'grade'=>$grade,'echelon'=>$echelon]);
     }
      public function supprimer(User $user)
     {
@@ -149,14 +147,29 @@ public function __construct()
         return Redirect::back()->with('message', 'تم التعديل بنجاح');
     }
 
+    public function modifierfonc(Request $request ,User $user)
+    {
+        $userupdate = $user->find($request->id);
+        $userupdate->fonction=$request->fonction;
+        $userupdate->date_f= date('Y-m-d', strtotime(str_replace('-', '/', $request['date_f'])));
+        $userupdate->save();
+
+        return Redirect::back()->with('message', 'تم التعديل بنجاح');
+
+    }
+
+
     public function anyData(User $user)
     {
 
-        $users = User::select(['id','sec_s', 'nom', 'prenom', 'email', 'telephone', 'sexe']);
+        $users = User::leftJoin('grade', 'grade.id_ensg', '=', 'enseignant.id')
+            ->select(['enseignant.id', 'enseignant.sec_s', 'enseignant.nom', 'enseignant.prenom', 'enseignant.email', 'enseignant.telephone', 'enseignant.sexe', 'grade.designation']);
+
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="/administration/enseignants/'. $user->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
+                return '<a href="/administration/enseignants/'. $user->id . '/visioner" class="btn btn-xs btn-primary">شهادة عمل</a>
+                <a href="/administration/enseignants/'. $user->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
                 <a href="/administration/enseignants/'. $user->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>';
 
             })
@@ -177,11 +190,11 @@ public function __construct()
         return redirect::to('/administration/enseignants/'.$enseignant->id.'/modifier')->with('message', 'تم الاضافة بنجاح');
     }
 
-    protected function store_titularisation(Request $request ,Titularisation $titularisation)
+    protected function store_echelon(Request $request ,Echelon $echelon)
     {
 
         $enseignant= User::find($request->id);
-        $titularisation->create([
+        $echelon->create([
             'note' => $request['note'],
             'Date' => date('Y-m-d', strtotime(str_replace('-', '/', $request['Date']))),
             'id_ensg' => $enseignant->id,

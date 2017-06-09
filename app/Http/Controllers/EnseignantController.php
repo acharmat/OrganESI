@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Diplome;
 use App\Grade;
+use App\Decision;
+use Datatables;
 use Auth;
 
 class EnseignantController extends Controller
@@ -37,5 +39,25 @@ class EnseignantController extends Controller
 
         $user=Auth::user();
         return view('enseignant.conge.ajouter');
+    }
+
+    public function anyData()
+    {
+        $decision = Decision::select(['id', 'numero', 'sujet']);
+
+        return Datatables::of($decision)
+            ->addColumn('action', function ($decision) {
+                return '<a href="/enseignant/decisions/'. $decision->id . '/visioner" class="btn btn-xs btn-primary">معاينة</a>
+                ';
+
+            })
+            ->make(true);
+
+    }
+
+    public function visioner($id){
+
+        $decision= Decision::where('id',$id)->first();
+        return view('enseignant.decisions.visioner' ,['decision'=>$decision]);
     }
 }

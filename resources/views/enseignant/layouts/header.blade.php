@@ -38,7 +38,7 @@
                   </form>
                 </div>
                 <div class="pull-right">
-                  <a href="/enseignant/compte" class="btn btn-default btn-flat">ادارة الحساب</a>
+                  <a href="/enseignant/compte" class="btn btn-default btn-flat">بياناتي</a>
                 </div>
               </li>
             </ul>

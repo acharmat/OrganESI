@@ -39,6 +39,8 @@
           <li><a href="{{url('administration/decisions/ajouter')}}">أضف قرار</a></li>
         </ul>
       </li>
+      <li><a href="{{url('administration/importexport')}}"><i class="fa  fa-download"></i><span>استيراد و تصدير</span></a></li>
+
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->

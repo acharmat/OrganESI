@@ -93,7 +93,7 @@ class CongeController extends Controller
         return Datatables::of($conge)
         ->addColumn('action', function ($conge) {
             if ($conge->decision == "مقبول")  {
-                return '<a href="/administration/conge/'. $conge->id . '/visioner" class="btn btn-xs btn-primary">طباعة</a>
+                return '<a href="/administration/conge/'. $conge->id . '/visioner" class="btn btn-xs btn-primary">سند الاجازة</a>
                 <a href="/administration/conge/'. $conge->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
                 <a href="/administration/conge/'. $conge->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>
                 ';} else {

@@ -1,7 +1,7 @@
 @extends('administration.layouts.layout')
 
 @section('title')
-الاداريين
+الأساتذة
 @endsection
 
 @section('header')
@@ -14,11 +14,11 @@
 
 <section class="content-header">
      <h1>
-       الاداريين
+       الأساتذة
      </h1>
      <ol class="breadcrumb">
        <li><a href="{{ url('/administration') }}"><i class="fa fa-dashboard"></i> الرئيسية</a></li>
-       <li class="active"><a href="{{ url('/administration/admins') }}">حسابات الاداريين</a></li>
+       <li class="active"><a href="{{ url('/administration/enseignants') }}">حسابات الأساتذة</a></li>
      </ol>
    </section>
 
@@ -29,7 +29,7 @@
        <div class="col-xs-12 ">
          <div class="box box-primary">
          <div class="box-header with-border">
-              <h3 class="box-title">قائمة الاداريين</h3>
+              <h3 class="box-title">قائمة الأساتذة</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -48,7 +48,9 @@
                  <th>البريد الالكتروني</th>
                  <th>رقم الهاتف</th>
                  <th>الجنس</th>
-                 <th>التحكم</th>
+                   <th>الرتبة</th>
+
+                   <th>التحكم</th>
 
 
                    </tr>
@@ -69,7 +71,8 @@
                  <th>البريد الالكتروني</th>
                  <th>رقم الهاتف</th>
                  <th>الجنس</th>
-                 <th>التحكم</th>
+                   <th>الرتبة</th>
+                   <th>التحكم</th>
 
 
                    </tr>
@@ -100,23 +103,26 @@
         var lastIdx = null;
         $('#data thead th').each( function () {
             if($(this).index()  < 5 ){
-                var classname = $(this).index() == 6  ?  'date' : 'dateslash';
+                var classname = $(this).index() == 7  ?  'date' : 'dateslash';
                 var title = $(this).html();
                 $(this).html( '<input type="text" class="' + classname + '" data-value="'+ $(this).index() +'" placeholder=" '+title+'" />' );
             }else if($(this).index() == 5){
-                $(this).html( '<select><option value="h"> ذكر </option><option value="f"> أنثى </option></select>' );
+                $(this).html( '<select><option value="ذكر"> ذكر </option><option value="أنثى"> أنثى </option></select>' );
+            }else if($(this).index() == 6){
+                $(this).html( '<select><option value="أستاذ مساعد قسم ب">أستاذ مساعد قسم ب</option><option value="أستاذ مساعد قسم أ">أستاذ مساعد قسم أ</option> <option value="أستاذ محاضر قسم ب">أستاذ محاضر قسم ب</option> <option value="أستاذ محاضر قسم أ">أستاذ محاضر قسم أ</option> <option value="بروفيسور">بروفيسور</option> </select>' );
             }
         } );
         var table = $('#data').DataTable({
         "processing": true,
             ajax: '{{ url('/administration/enseignants/data') }}',
             columns: [
-                {data: 'sec_s', name: 'sec_s'},
-                {data: 'nom', name: 'nom'},
-                {data: 'prenom', name: 'prenom'},
-                {data: 'email', name: 'email'},
-                {data: 'telephone', name: 'telephone',orderable: false},
-                {data: 'sexe', name: 'sexe',orderable: false},
+                {data: 'sec_s', name: 'enseignant.sec_s'},
+                {data: 'nom', name: 'enseignant.nom'},
+                {data: 'prenom', name: 'enseignant.prenom'},
+                {data: 'email', name: 'enseignant.email'},
+                {data: 'telephone', name: 'enseignant.telephone',orderable: false},
+                {data: 'sexe', name: 'enseignant.sexe',orderable: false},
+                {data: 'designation', name: 'grade.designation',orderable: false},
                 {data: 'action', name: 'action',orderable: false, searchable: false}
             ],
             "language": {

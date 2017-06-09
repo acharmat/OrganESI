@@ -1,7 +1,7 @@
 @extends('administration.layouts.layout')
 
 @section('title')
-    اضافة عطلة
+    اضافة اجازة
 @endsection
 
 @section('header')
@@ -14,12 +14,12 @@
 @section('content')
 <section class="content-header">
      <h1>
-       اضافة عطلة
+       اضافة اجازة
      </h1>
      <ol class="breadcrumb">
        <li><a href="{{ url('/administration') }}"><i class="fa fa-dashboard"></i> الرئيسية</a></li>
-       <li><a href="{{ url('/administration/admins') }}">الاداريين</a></li>
-       <li class="active"><a href="{{ url('/administration/admins/ajouter') }}">أضف عطلة</a></li>
+       <li><a href="{{ url('/administration/conge') }}">الاجازات</a></li>
+       <li class="active"><a href="{{ url('/administration/conge/ajouter') }}">أضف اجازة</a></li>
      </ol>
    </section>
 

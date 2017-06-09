@@ -265,6 +265,57 @@
             </form>
           </div>
 
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">المنصب العالي المشغول</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- form start -->
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/enseignants/changefonc') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{ $user->id }}" name="id">
+                    <div class="box-body">
+                        <div class="row">
+
+                            <div class="col-xs-6">
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="datepicker6" class="control-label">تاريخ التعيين</label>
+                                        <input type="text" id="datepicker6" class="form-control" name="date_f" value="{{ $user->date_f}}">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-xs-6">
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="password-confirm" class="control-label">المنصب</label>
+                                        <input id="fonction" type="text" class="form-control" name="fonction" value="{{ $user->fonction}}">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary pull-left">حفظ التعديلات</button>
+                    </div>
+                </form>
+            </div>
+
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">الشهادات</h3>
@@ -418,7 +469,7 @@
                     </div>
                 </div>
                 <!-- form start -->
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/enseignants/store_titularisation') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/administration/enseignants/store_echelon') }}">
                     {{ csrf_field() }}
                     <input type="hidden" value="{{ $user->id }}" name="id">
                     <div class="box-body">
@@ -438,22 +489,22 @@
                             </div>
 
                             <div class="col-xs-6">
-                                <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label for="note" class="control-label">الدرجة</label>
                                         <select class="form-control" name="note">
-                                            <option value="01">قسم فرعي 01</option>
-                                            <option value="02">قسم فرعي 02</option>
-                                            <option value="03">قسم فرعي 03</option>
-                                            <option value="04">قسم فرعي 04</option>
-                                            <option value="05">قسم فرعي 05</option>
-                                            <option value="06">قسم فرعي 06</option>
-                                            <option value="07">قسم فرعي 07</option>
-                                            <option value="08">قسم فرعي 08</option>
-                                            <option value="09">قسم فرعي 09</option>
-                                            <option value="10">قسم فرعي 10</option>
-                                            <option value="11">قسم فرعي 11</option>
-                                            <option value="12">قسم فرعي 12</option>
+                                            <option value="قسم فرعي 01">قسم فرعي 01</option>
+                                            <option value="قسم فرعي 02">قسم فرعي 02</option>
+                                            <option value="قسم فرعي 03">قسم فرعي 03</option>
+                                            <option value="قسم فرعي 04">قسم فرعي 04</option>
+                                            <option value="قسم فرعي 05">قسم فرعي 05</option>
+                                            <option value="قسم فرعي 06">قسم فرعي 06</option>
+                                            <option value="قسم فرعي 07">قسم فرعي 07</option>
+                                            <option value="قسم فرعي 08">قسم فرعي 08</option>
+                                            <option value="قسم فرعي 09">قسم فرعي 09</option>
+                                            <option value="قسم فرعي 10">قسم فرعي 10</option>
+                                            <option value="قسم فرعي 11">قسم فرعي 11</option>
+                                            <option value="قسم فرعي 12">قسم فرعي 12</option>
 
                                         </select>
                                     </div>
@@ -613,7 +664,7 @@
                              <h3 class="box-title">الدرجة الحالية</h3>
                              <div class="box-tools pull-right">
                                  <button type="button"  class="btn btn-box-tool dropdown-toggle">
-                                     <a title="تعديل الدرجات" href="/administration/titularisations/{{$user->id}}"><i class="fa fa-wrench"></i></a> </button>
+                                     <a title="تعديل الدرجات" href="/administration/echelons/{{$user->id}}"><i class="fa fa-wrench"></i></a> </button>
                                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                  </button>
                              </div>
@@ -621,7 +672,7 @@
                          <!-- /.box-header -->
                          <div class="box-body">
                              <p>
-                                 @if($titularisation)<a  href="/administration/titularisations/{{$titularisation->id}}/modifier" class="label label-default"> قسم فرعي رقم {{$titularisation->note}} </a>@endif
+                                 @if($echelon)<a  href="/administration/echelons/{{$echelon->id}}/modifier" class="label label-default"> {{$echelon->note}} </a>@endif
                              </p>
 
                          </div>
@@ -659,6 +710,9 @@
           autoclose: true
       });
       $('#datepicker5').datepicker({
+          autoclose: true
+      });
+      $('#datepicker6').datepicker({
           autoclose: true
       });
   });

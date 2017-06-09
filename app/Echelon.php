@@ -4,15 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Titularisation extends Model
+class Echelon extends Model
 {
-    protected $table = 'Titularisation';
+    protected $table = 'echelon';
     public $timestamps = false;
 
-    /* public function conges(){
-
-         return $this->hasMany('App\Conge');
-     }
 
      /**
       * The attributes that are mass assignable.

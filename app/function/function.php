@@ -8,9 +8,8 @@ use App\Diplome;
 
 function enseignant_list(){
 
-    return  User::where('active','oui')
-        ->select(['id', 'nom', 'prenom','photo'])
-        ->get();
+    return  User::select(['id', 'nom', 'prenom','photo'])
+        ->take(8)->get();
 }
 
 function unread_conge(){

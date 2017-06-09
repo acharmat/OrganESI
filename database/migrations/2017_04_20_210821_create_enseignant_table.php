@@ -33,7 +33,12 @@ class CreateEnseignantTable extends Migration
             $table->date('date_r');
             $table->enum('statu', ['مرسم', 'متربص']);
             $table->date('date_s');
+            $table->string('fonction')->nullable();
+            $table->date('date_f')->nullable();
             $table->rememberToken();
+
+
+
         });
     }
 

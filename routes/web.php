@@ -45,12 +45,15 @@ Route::prefix('administration')->group(function() {
         Route::get('{user}/modifier', 'EnseignantsController@modifier');
         Route::post('/update', 'EnseignantsController@update');
         Route::get('{user}/supprimer', 'EnseignantsController@supprimer');
+        Route::get('{user}/visioner', 'EnseignantsController@visioner');
         Route::post('/changemdp', 'EnseignantsController@modifiermdp');
         Route::post('/changetof', 'EnseignantsController@modifierphoto');
         Route::post('/stor_diplome', 'EnseignantsController@store_diplome');
         Route::post('/store_grade', 'EnseignantsController@store_grade');
-        Route::post('/store_titularisation', 'EnseignantsController@store_titularisation');
+        Route::post('/store_echelon', 'EnseignantsController@store_echelon');
+        Route::post('/changefonc', 'EnseignantsController@modifierfonc');
         Route::get('/data',['as' => 'administration.enseignants.data' , 'uses' =>'EnseignantsController@anyData']);
+
 
 
     });
@@ -101,14 +104,23 @@ Route::prefix('administration')->group(function() {
 
     });
 
-    Route::prefix('/titularisations')->group(function() {
-        Route::get('/{id}', 'TitularisationController@index');
-        Route::get('{titularisation}/modifier', 'TitularisationController@modifier');
-        Route::post('/update', 'TitularisationController@update');
-        Route::get('{titularisation}/supprimer', 'TitularisationController@supprimer');
-        Route::get('/data/{id}',['as' => 'administration.titularisations.data' , 'uses' =>'TitularisationController@anyData']);
+    Route::prefix('/echelons')->group(function() {
+        Route::get('/{id}', 'EchelonController@index');
+        Route::get('{titularisation}/modifier', 'EchelonController@modifier');
+        Route::post('/update', 'EchelonController@update');
+        Route::get('{titularisation}/supprimer', 'EchelonController@supprimer');
+        Route::get('/data/{id}',['as' => 'administration.echelons.data' , 'uses' =>'EchelonController@anyData']);
 
     });
+
+    Route::prefix('/importexport')->group(function() {
+        Route::get('/', 'ImportExportController@index');
+        Route::get('/downloadExcel/{type}', 'ImportExportController@downloadExcel');
+        Route::post('/importExcel', 'ImportExportController@importExcel');
+        Route::get('/exportPDF', 'ImportExportController@exportPDF');
+
+    });
+
 
 
 });
@@ -118,6 +130,12 @@ Route::prefix('enseignant')->group(function() {
     Route::post('/login', 'Auth\LoginController@login')->name('login.submit');
     Route::get('/', 'EnseignantController@index');
     Route::post('/logout', 'Auth\LoginController@Elogout')->name('enseignant.logout');
+    Route::get('/data',['as' => 'enseignant.decision.data' , 'uses' =>'EnseignantController@anyData']);
+
+
+    Route::prefix('/decisions')->group(function() {
+        Route::get('{decision}/visioner', 'EnseignantController@visioner');
+    });
 
 
     Route::prefix('/compte')->group(function() {
@@ -138,13 +156,4 @@ Route::prefix('enseignant')->group(function() {
 });
 
 
-
-
-
-
-
-Route::get('importExport', 'MaatwebsiteDemoController@importExport');
-Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
-Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
-Route::get('exportPDF', 'MaatwebsiteDemoController@exportPDF');
 

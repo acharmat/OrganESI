@@ -21,7 +21,7 @@
 
         <div class="row">
 
-            <div class="col-xs-6">
+            <div class="col-md-6">
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -35,7 +35,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="col-xs-12 ">
-                            <canvas id="sexe"  height="155" width="257" style="width: 257px; height: 155px;"></canvas>
+                            <canvas id="sexe"  height="130" width="257" style="width: 257px; height: 130px;"></canvas>
 
                         </div>
                         <!-- /.users-list -->
@@ -48,7 +48,7 @@
 
             </div>
 
-            <div class="col-xs-6 ">
+            <div class="col-md-6 ">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">قائمة الأساتذة</h3>
@@ -82,7 +82,7 @@
         </div>
 
 
-            <div class="col-xs-12">
+            <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">احصائيات الأساتذة حسب التخصص</h3>

@@ -24,8 +24,13 @@
 
                 <div class="col-xs-12" style="font-size: larger">
                     <br/>
-                    <b>الاسم و اللقب :</b>
+                    <b>السيد :</b>
                     {{ $user->prenom }}  {{ $user->nom }}
+                </div>
+                <div class="col-xs-12" style="font-size: larger">
+                    <br/>
+                    <b>المولود في :</b>
+                    {{ $user->date_n }}  {{ $user->lieu_n }}
                 </div>
                 <div class="col-xs-12" style="font-size: larger" >
                     <br/>
@@ -34,18 +39,19 @@
                 </div>
                 <div class="col-xs-12" style="font-size: larger" >
                     <br/>
-                    <b>نوع الاجازة :</b>
-                    {{ $conge->Type }}
+                    <b>الوظيفة :</b>
+                    {{ $user->fonction }}
                 </div>
                 <div class="col-xs-12" style="font-size: larger">
                     <br/>
-                    <b>تاريخ بداية الاجازة :</b>
-                    {{ $conge->Date_debut }}
+                    <b>يعمل بالمدرسة العليا للاعلام الالي - 08 ماي 1945 - سيدي بلعباس ابتداءا من :</b>
+                    {{ $user->date_r }}
+                    <b>و الى غاية يومنا هذا</b>
                 </div>
                 <div class="col-xs-12" style="font-size: larger">
                     <br/>
-                    <b>تاريخ نهاية الاجازة :</b>
-                    {{ $conge->Date_fin }}
+                    <b>تاريخ أول توظيف :</b>
+                    {{ $user->date_s }}
                 </div>
 
 
@@ -64,18 +70,18 @@
                 </div>
             </div>
         </div>
-
     </section>
 
 @endsection
 
 @section('footer')
 
-    <!-- Print -->
     <script type="text/javascript">
         (function() {
 
             function createPopup( data ) {
+                var year = "{{ date('Y') }}";
+
                 var mywindow = window.open( "", "new div", "height=400,width=600" );
                 mywindow.document.write( "<html><head><style>@page { size: auto;  margin: 0 20px 0 20px ; }</style></head><body >" );
                 mywindow.document.write( "<h1 style='text-align: center'> الجمهورية الجزائرية الديموقراطية الشعبية</h1>" );
@@ -84,21 +90,21 @@
                     "<br/>المديرية - الأمانة العامة" +
                     "<br/>مديرية المستخدمين والتكوين والنشاطات الثقافية والرياضية" +
                     "<br/>مصلحة المستخدمين المدرسين" +
+                    "<br/>الرقم : ..../ "+ year+
                     "</h4>" );
                 mywindow.document.write( "<br/>" );
+                mywindow.document.write( "<h1 style='text-align: center'> شهادة عمل<h1/>" );
                 mywindow.document.write( "<br/>" );
-                mywindow.document.write( "<h1 style='text-align: center'> سند اجازة<h1/>" );
-                mywindow.document.write( "<br/>" );
-                mywindow.document.write( "<br/>" );
-                mywindow.document.write("<div style='text-align: right; font-size: 18px'>");
-                mywindow.document.write( data);
+                mywindow.document.write("<div style='text-align: right; font-size: 16px'>");
+                mywindow.document.write( "<b>  : إن السيد مدير المدرسة العليا للإعلام الآلي-08ماي1945-بسيدي بلعباس، يشهد أن<b/>" );
+                mywindow.document.write(data);
                 mywindow.document.write( "</div>" );
                 mywindow.document.write( "<br/>" );
                 mywindow.document.write( "<br/>" );
-                mywindow.document.write( "<h4 style='text-align: center'>  سيدي بلعباس في </h4>");
+                mywindow.document.write( "<h5 style='text-align: center'>  سيدي بلعباس في </h5>");
                 mywindow.document.write( "<br/>" );
                 mywindow.document.write( "<br/>" );
-                mywindow.document.write( "<h4 style='text-align: left; margin-left: 30px'>المدير </h4>" );
+                mywindow.document.write( "<h5 style='text-align: left; margin-left: 30px'>المدير </h5>" );
                 mywindow.document.write( "</body></html>" );
 
                 mywindow.print();
