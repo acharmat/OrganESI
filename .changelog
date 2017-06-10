@@ -1,22 +1,3 @@
-Authentification Enseignantns
-================================
-1- php artisan make:Auth
+php artisan migrate
 
-Authentification Administrateur
-================================
-1- php artisan make:migration create_administrateur_table
-2- php artisan migrate
-3- Model : app/admin.php
-4- config/auth.php 
-5- routes/web.php => add routes
-6- Controller : app/http/controllers/AdminController.php
-7- View : adminstration/index.blade.php
-8- Controller : app/http/controllers/auth/AdminLoginController.php
-9- View : auth/admin-login.blade.php
-10- routes/web.php => add routes
-
-Administration/enseignants
-================================
-1- ajouter 
-2-
-
+php artisan db:seed --class=AdministrateurTableSeeder

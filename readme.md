@@ -1,40 +1,48 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+![alt OrganESI](https://img4.hostingpics.net/thumbs/mini_517635logo.jpg)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Présentation du projet 
 
-## About Laravel
+Ce travail s’inscrit dans le cadre des projets pluridisciplinaires réalisés lors de la 1ème année Cycle Supérieure à  l'école supérieure d'informatique de Sidi Bel Abbes.
+ L’objectif de notre travail est de réaliser une application web «Conception et réalisation d’un système de gestion du personnel d’enseignant».
+ 
+Notre application que nous avons nommé « OrganESI» a pour but de mettre sur pieds une solution d’optimisation de la gestion du personnel d’enseignants, le souhait d’utilisateur de cette application est :
+- Avoir un suivi permanant du personnel 
+- L'organisation et l’informatisation de la gestion du personnel
+- Automatiser les tâches administratives et de réduire ainsi les risques d’erreurs lors du calcul des charges
+- Simplifier et optimiser la gestion du personnel en permettant aux personnes en charge de cette fonction de gagner du temps tout en leur apportant une vision globale et stratégique des ressources humaines de l’Ecole
+- Assurer que le travail est effectué correctement et dans les délais
+- Permettent de fournir des informations fiables
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+- php >= 5.4 
+- Laravel 5
+- MySQL
+- Composer
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+Modifier les données dans le fichier .env :
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+``` bash
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+```
 
-## Contributing
+Utiliser la commande suivante pour créer les tables de la bases de données :
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+``` bash
+php artisan migrate
+```
 
-## Security Vulnerabilities
+Utiliser la commande suivante pour créer un administrateur pour votre systeme :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+``` bash
+php artisan db:seed --class=AdministrateurTableSeeder
+```
+- E-mail : administrateur@esi-sba.dz 
+- Mot de passe : 123456   

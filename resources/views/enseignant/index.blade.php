@@ -165,7 +165,9 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="{{ url('/images/'. Auth::user()->photo  .'/') }}"  alt="User profile picture">
                         <h3 class="profile-username text-center">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</h3>
-                        <p class="text-muted text-center">{{$grade->designation}}</p>
+                        @if($grade)
+                            <p class="text-muted text-center">{{$grade->designation}}</p>
+                        @endif
                         @if(Auth::user()->fonction)
                             <p class="text-muted text-center"> المنصب العالي المشغول :
                                 {{ Auth::user()->fonction }}</p>
