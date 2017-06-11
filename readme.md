@@ -47,6 +47,10 @@ php artisan db:seed --class=AdministrateurTableSeeder
 - E-mail : administrateur@esi-sba.dz 
 - Mot de passe : 123456   
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 ## Manuel d’utilisation
 
 Télecharger le [Manuel d’utilisation](#).
