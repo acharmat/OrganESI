@@ -6,6 +6,8 @@ use Excel;
 use App\Item;
 use DB;
 use Redirect;
+use Illuminate\Support\Facades\Input;
+
 
 class ImportExportController extends Controller
 {
@@ -31,17 +33,17 @@ class ImportExportController extends Controller
                 foreach ($data as $key => $value) {
                     $insert[] = ['nom' => $value->nom, 'prenom' => $value->prenom, 'nom_fr' => $value->nom_fr,
                         'prenom_fr' => $value->prenom_fr,  'email' => $value->email, 'adresse' => $value->adresse
-                        , 'telephone' => $value->telephone, 'password' => bcrypt($value->nom+$value->prenom), 'sexe' => $value->sexe, 'date_n' => $value->date_n
-                        , 'lieu_n' => $value->lieu_n, 'spec' => $value->spec, 'situation_f' => $value->situation_f, 'nbr_enf' => $value->nbr_enf,'date_s' => $value->date_s
-                        ,'sec_s'=>$value->sec_s,'date_r' => $value->date_r];
+                        , 'telephone' => $value->telephone, 'password' => bcrypt($value->sec_s), 'sexe' => $value->sexe, 'date_n' => $value->date_n
+                        , 'lieu_n' => $value->lieu_n, 'situation_f' => $value->situation_f, 'nbr_enf' => $value->nbr_enf,'date_s' => $value->date_s
+                        ,'statu' => $value->statu ,'sec_s'=>$value->sec_s,'date_r' => $value->date_r,'fonction'=>$value->fonction,'date_f'=>$value->date_f];
                 }
                 if(!empty($insert)){
                     DB::table('enseignant')->insert($insert);
-                    dd('Insert Record successfully.');
+
                 }
             }
         }
-        return Redirect::back()->with('message','تم الاستيراد بنجاح');
+        return Redirect::to('/administration/enseignants')->with('message','تم الاستيراد بنجاح');
     }
 
 
@@ -52,9 +54,9 @@ class ImportExportController extends Controller
             {
 
                 $enseignants=DB::table('enseignant')
-                    ->Join('grade', 'grade.id_ensg', '=', 'enseignant.id')
-                    ->Join('diplome', 'diplome.id_ensg', '=', 'enseignant.id')
-                    ->Join('echelon', 'echelon.id_ensg', '=', 'enseignant.id')
+                    ->leftJoin('grade', 'grade.id_ensg', '=', 'enseignant.id')
+                    ->leftJoin('diplome', 'diplome.id_ensg', '=', 'enseignant.id')
+                    ->leftJoin('echelon', 'echelon.id_ensg', '=', 'enseignant.id')
 
                     ->select(['enseignant.id', 'enseignant.nom', 'enseignant.prenom','enseignant.nom_fr','enseignant.prenom_fr', 'enseignant.date_n',
                         'enseignant.lieu_n', 'enseignant.sexe', 'diplome.division', 'diplome.spec', 'grade.designation','echelon.note',

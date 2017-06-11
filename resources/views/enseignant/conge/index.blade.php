@@ -1,7 +1,7 @@
 @extends('enseignant.layouts.layout')
 
 @section('title')
-    طلب عطلة
+    طلب اجازة
 @endsection
 
 @section('header')

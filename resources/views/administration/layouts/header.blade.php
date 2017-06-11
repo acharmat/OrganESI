@@ -21,7 +21,9 @@
           <!-- Menu conge -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-flag-o"></i>
+            @if(count_conge() > 0)
             <span class="label label-warning">{{count_conge()}}</span>
+              @endif
           </a>
 
           <ul class="dropdown-menu">
@@ -46,8 +48,11 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">{{count_statu()}}</span>
+            @if(count_statu() > 0)
+              <span class="label label-warning">{{count_statu()}}</span>
+            @endif
           </a>
+
           <ul class="dropdown-menu">
             <li class="header" style="text-align: center">يوجد {{count_statu()}} تنبيهات لم تراجع</li>
             <li>

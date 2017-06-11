@@ -5,7 +5,6 @@
 @endsection
 
 @section('header')
-    <link href="{{ asset("/bower_components/admin-lte/plugins/datepicker/datepicker3.css") }}" rel="stylesheet" type="text/css" />
 
 
 @endsection
@@ -109,7 +108,6 @@
 
 @section('footer')
 
-<script src="{{ asset ("/bower_components/admin-lte/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript"></script>
 
 
 @endsection

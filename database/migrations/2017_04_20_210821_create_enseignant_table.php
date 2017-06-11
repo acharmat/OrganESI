@@ -38,7 +38,6 @@ class CreateEnseignantTable extends Migration
             $table->rememberToken();
 
 
-
         });
     }
 

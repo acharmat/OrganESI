@@ -36,7 +36,6 @@ class AjouterAdminRequest extends FormRequest
             'nom_fr' => 'required|max:255|regex:/^[a-zA-Z]+$/u',
             'prenom_fr' => 'required|max:255|regex:/^[a-zA-Z]+$/u',
 
-
         ];
     }
 }

@@ -122,7 +122,6 @@ Route::prefix('administration')->group(function() {
     });
 
 
-
 });
 
 Route::prefix('enseignant')->group(function() {

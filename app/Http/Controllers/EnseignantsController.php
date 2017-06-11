@@ -168,9 +168,14 @@ public function __construct()
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="/administration/enseignants/'. $user->id . '/visioner" class="btn btn-xs btn-primary">شهادة عمل</a>
+                if ($user->designation)  {
+                    return '<a href="/administration/enseignants/'. $user->id . '/visioner" class="btn btn-xs btn-primary">شهادة عمل</a>
                 <a href="/administration/enseignants/'. $user->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
+                <a href="/administration/enseignants/'. $user->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>
+                    ';} else {
+                    return '<a href="/administration/enseignants/'. $user->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
                 <a href="/administration/enseignants/'. $user->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>';
+                }
 
             })
             ->make(true);
