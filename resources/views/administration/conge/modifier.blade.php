@@ -46,10 +46,10 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="form-group{{ $errors->has('date_f') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('Date_fin') ? ' has-error' : '' }}">
                         <div class="col-md-12">
                             <label for="datepicker2" class="control-label">تاريخ نهاية العطلة</label>
-                            <input type="text" id="datepicker2" class="form-control" name="date_f" value="{{$conge->Date_fin}}" >
+                            <input type="text" id="datepicker2" class="form-control" name="Date_fin" value="{{$conge->Date_fin}}" >
                         </div></div>
 
 
@@ -72,10 +72,10 @@
                 </div>
                 <div class="col-xs-6">
 
-                    <div class="form-group{{ $errors->has('date_d') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('Date_debut') ? ' has-error' : '' }}">
                         <div class="col-md-12">
                             <label for="datepicker" class="control-label">تاريخ بداية العطلة</label>
-                            <input type="text" id="datepicker" class="form-control" name="date_d" value="{{ $conge->Date_debut}}" >
+                            <input type="text" id="datepicker" class="form-control" name="Date_debut" value="{{ $conge->Date_debut}}" >
                         </div>
                     </div>
                     <div class="form-group">

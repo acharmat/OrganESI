@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class AjouterCongeRequest extends FormRequest
 {
     /**
@@ -23,8 +24,15 @@ class AjouterCongeRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-//
+        'Date_debut'=>'required',
+        'Date_fin'=>'required|after:Date_debut',
+       
         ];
     }
+
+
+
+  
 }

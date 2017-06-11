@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\AjouterAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
+
 use App\Admin;
 use Image;
 use Datatables;
@@ -46,6 +48,7 @@ public function __construct()
  protected function store(AjouterAdminRequest $request ,Admin $user)
     {
        $admin = $user->create([
+
             'nom' => $request['nom'],
             'prenom' => $request['prenom'],
             'nom_fr' => $request['nom_fr'],
@@ -62,7 +65,7 @@ public function __construct()
         return redirect::to('/administration/admins/'.$admin->id.'/modifier')->with('message', 'تم الاضافة بنجاح');
     }
 
- public function update(Request $request ,Admin $user)
+ public function update(UpdateAdminRequest $request ,Admin $user)
     {
         $userupdate = $user->find($request->id);
         $userupdate->fill([

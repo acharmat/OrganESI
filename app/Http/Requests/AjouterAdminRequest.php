@@ -33,8 +33,9 @@ class AjouterAdminRequest extends FormRequest
             'lieu_n' => 'required|max:255',
             'sexe' => 'required|max:255',
             'adresse' => 'required|max:255',
-            'nom_fr' => 'required|max:255|regex:/^[a-zA-Z]+$/u',
-            'prenom_fr' => 'required|max:255|regex:/^[a-zA-Z]+$/u',
+            'nom_fr' => 'required|max:255|regex:/^[a-zA-Z_ ]+$/u',
+            'prenom_fr' => 'required|max:255|regex:/^[a-zA-Z_ ]+$/u',
+
 
         ];
     }

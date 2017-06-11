@@ -54,10 +54,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('date_f') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('Date_fin') ? ' has-error' : '' }}">
                                 <div class="col-md-12">
                                     <label for="datepicker" class="control-label">تاريخ نهاية العطلة</label>
-                                    <input type="text" id="datepickerf" class="form-control" name="date_f" value="{{ old('date_f') }}" >
+                                    <input type="text" id="datepickerf" class="form-control" name="Date_fin" value="{{ old('Date_fin') }}" >
+                                    @if ($errors->has('Date_fin'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('Date_fin') }}</strong>
+                                    </span>
+                                    @endif
                                 </div></div>
 
 
@@ -65,7 +70,7 @@
                         <div class="col-xs-6">
 
 
-                            <div class="form-group{{ $errors->has('spec') ? ' has-error' : '' }}">
+                            <div class="form-group">
                                 <div class="col-md-12">
                                     <label for="id_ensg" class="control-label"> الأستاذ</label>
                                     <select dir="rtl" class="form-control select2" name="id_ensg">
@@ -73,18 +78,19 @@
                                         <option value="{{$user->id}}">{{$user->nom}}  {{$user->prenom}} ({{$user->sec_s}})</option>
                                          @endforeach
 
-                                    </select>                            @if ($errors->has('id_ensg'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('id_ensg') }}</strong>
-                                    </span>
-                                    @endif
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('date_d') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('Date_debut') ? ' has-error' : '' }}">
                                 <div class="col-md-12">
                                     <label for="datepicker" class="control-label">تاريخ بداية العطلة</label>
-                                    <input type="text" id="datepickerd" class="form-control" name="date_d" value="{{ old('date_d') }}" >
+                                    <input type="text" id="datepickerd" class="form-control" name="Date_debut" value="{{ old('Date_debut') }}" >
+                                    @if ($errors->has('Date_debut'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('Date_debut') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

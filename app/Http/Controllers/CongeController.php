@@ -55,11 +55,11 @@ class CongeController extends Controller
 
 
 
-    protected function store(Request $request  )
+    protected function store(AjouterCongeRequest $request  )
     {
         $conge=new Conge();
-        $conge->Date_debut = date('Y-m-d', strtotime(str_replace('-', '/', $request['date_d'])));
-        $conge->Date_fin = date('Y-m-d', strtotime(str_replace('-', '/', $request['date_f'])));
+        $conge->Date_debut = date('Y-m-d', strtotime(str_replace('-', '/', $request['Date_debut'])));
+        $conge->Date_fin = date('Y-m-d', strtotime(str_replace('-', '/', $request['Date_fin'])));
         $conge->Type = $request['type'];
         $conge->decision = 'مقبول';
     $conge->id_ensg = $request['id_ensg'];
@@ -74,8 +74,8 @@ class CongeController extends Controller
     public function update(Request $request )
     {
         $conge = Conge::find($request->id);
-        $conge->Date_debut=date('Y-m-d', strtotime(str_replace('-', '/', $request['date_d'])));
-        $conge->Date_fin=date('Y-m-d', strtotime(str_replace('-', '/', $request['date_f'])));
+        $conge->Date_debut=date('Y-m-d', strtotime(str_replace('-', '/', $request['Date_debut'])));
+        $conge->Date_fin=date('Y-m-d', strtotime(str_replace('-', '/', $request['Date_fin'])));
         $conge->Type=$request['type'];
         $conge->decision=$request['decision'];
 

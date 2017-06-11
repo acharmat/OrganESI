@@ -1,4 +1,4 @@
-!<p align="center">[alt OrganESI](https://img4.hostingpics.net/thumbs/mini_517635logo.jpg)</p>
+![alt OrganESI](https://img4.hostingpics.net/thumbs/mini_517635logo.jpg)
 
 ## Présentation du projet 
 
@@ -47,11 +47,7 @@ php artisan db:seed --class=AdministrateurTableSeeder
 - E-mail : administrateur@esi-sba.dz 
 - Mot de passe : 123456   
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 ## Manuel d’utilisation
 
-Télecharger le [Manuel d’utilisation](#).
-
+Télecharger le [Manuel d’utilisation](https://drive.google.com/file/d/0B3Y1hGJ8qX_5ZlVwc1dvUjhPTHc/view?usp=sharing).

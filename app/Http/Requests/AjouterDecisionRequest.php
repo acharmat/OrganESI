@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AjouterDiplomeRequest extends FormRequest
+class AjouterDecisionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,14 @@ class AjouterDiplomeRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'Date_Dip'=>'required',
+        'numero'=>'required',
+        'sujet'=>'required',
+        'contenu'=>'required|min:10',
+
+       
         ];
     }
 }
+

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AjouterDiplomeRequest extends FormRequest
+class AjouterGradeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class AjouterDiplomeRequest extends FormRequest
     public function rules()
     {
         return [
-            'Date_Dip'=>'required',
+            'Date_grad'=>'required',
         ];
     }
 }

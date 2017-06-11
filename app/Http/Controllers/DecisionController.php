@@ -7,7 +7,8 @@ use Auth;
 use App\Decision;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\AjouterCongeRequest;
+use App\Http\Requests\AjouterDecisionRequest;
+use App\Http\Requests\UpdateDecisionRequest;
 use Datatables;
 
 
@@ -49,7 +50,7 @@ class DecisionController extends Controller
 
 
 
-    protected function store(Request $request  )
+    protected function store(AjouterDecisionRequest $request  )
     {
         $decision=new Decision();
         $decision->numero = $request['numero'];
@@ -65,7 +66,7 @@ class DecisionController extends Controller
 
 
 
-    public function update(Request $request )
+    public function update(UpdateDecisionRequest $request )
     {
         $decision = Decision::find($request->id);
         $decision->numero=$request['numero'];

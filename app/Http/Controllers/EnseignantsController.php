@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\AjouterEnseignantRequest;
+use App\Http\Requests\UpdateEnseignantRequest;
+use App\Http\Requests\AjouterGradeRequest;
+use App\Http\Requests\AjouterDiplomeRequest;
+use App\Http\Requests\AjouterEchelonRequest;
+
 use App\User;
 use App\Diplome;
 use App\Grade;
@@ -90,7 +95,7 @@ public function __construct()
 
 
 
-    protected function store_diplome(Request $request ,Diplome $diplome)
+    protected function store_diplome(AjouterDiplomeRequest $request ,Diplome $diplome)
     {
 
         $enseignant= User::find($request->id);
@@ -105,7 +110,7 @@ public function __construct()
     }
 
 
-    public function update(Request $request ,User $user)
+    public function update(UpdateEnseignantRequest $request ,User $user)
     {
         $userupdate = $user->find($request->id);
         $userupdate->fill([
@@ -176,13 +181,12 @@ public function __construct()
                     return '<a href="/administration/enseignants/'. $user->id . '/modifier" class="btn btn-xs btn-warning" >تعديل</a>
                 <a href="/administration/enseignants/'. $user->id . '/supprimer" class="btn btn-xs btn-danger">حذف</a>';
                 }
-
             })
             ->make(true);
 
     }
 
-    protected function store_grade(Request $request ,Grade $grade)
+    protected function store_grade(AjouterGradeRequest $request ,Grade $grade)
     {
 
         $enseignant= User::find($request->id);
@@ -195,7 +199,7 @@ public function __construct()
         return redirect::to('/administration/enseignants/'.$enseignant->id.'/modifier')->with('message', 'تم الاضافة بنجاح');
     }
 
-    protected function store_echelon(Request $request ,Echelon $echelon)
+    protected function store_echelon(AjouterEchelonRequest $request ,Echelon $echelon)
     {
 
         $enseignant= User::find($request->id);

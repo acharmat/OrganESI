@@ -42,7 +42,7 @@
                     <div class="row">
 
                         <div class="col-xs-6">
-                            <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('sujet') ? ' has-error' : '' }}">
                                 <div class="col-md-12">
                                     <label for="sujet" class="control-label">موضوع القرار</label>
                                     <input id="sujet" type="text" class="form-control" name="sujet" value="{{ old('sujet') }}" autofocus>
@@ -74,7 +74,7 @@
 
                         <div class="col-xs-12">
 
-                            <div class="form-group{{ $errors->has('adresse') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('contenu') ? ' has-error' : '' }}">
                                 <div class="col-md-12">
                                     <label for="contenu" class="control-label">محتوي القرار</label>
                                     <textarea id="contenu" name="contenu" class="form-control" rows="15" value="{{ old('contenu') }}"  autofocus></textarea>
